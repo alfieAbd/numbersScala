@@ -3,112 +3,52 @@
   */
 object Main extends BaseTest {
 
-  val consoleInput = scala.io.StdIn.readLine().toInt
+  val consoleInput: String = scala.io.StdIn.readLine()
+  val length: Int = consoleInput.length()
+  val grouped: List[String] = consoleInput.grouped(3).toList
 
-  // Check number of digits.
+  def checkLength(x: Int): String = x match {
 
-  def digitLength(x: Int, i: Int = 1): Int = {
-    if (x < 24) i
-    else digitLength(x / 24, i + 1)
-  }
-
-  // Method to split number into digits for printing to console
-
-  def split(x: Int): List[Int] = {
-
-   val splitInteger = x.toString.map(_.asDigit).toList
-    splitInteger
-
-  }
-
-  def checkInput(x: Int) = x match {
-
-    case 1 if x > 1 && x < 3 =>
-      "Short Scale: " + consoleInput + "\n" + "Long Scale: " + consoleInput;
-    case 2 if x > 3 && x < 6 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "thousand" +
-          split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "\n" +
-      "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "thousand" +
-          split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5);
-    case 3 if x > 6 && x < 9 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "million" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "thousand" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "\n" +
-      "Long Scale: " + split(consoleInput).head + + split(consoleInput)(1) + split(consoleInput)(2) + "million" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "thousand" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8);
-    case 4 if x > 9 && x < 12 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "billion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "million" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "thousand" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "\n" +
-      "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "milliard" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "million" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "thousand" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11);
-    case 5 if x > 12 && x < 15 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "trillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "billion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "million" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "thousand" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "\n" +
-       "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "trillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "billion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "million" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "thousand" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14);
-    case 6 if x > 15 && x < 18 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "quadrillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "trillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "billion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "million" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "thousand" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17) + "\n" +
-        "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "quadrillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "trillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "billion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "million" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "thousand" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17);
-    case 7 if x > 18 && x < 21 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "quintillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "quadrillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "trillion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "billion" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "million" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17) + "thousand" +
-                              ", " + split(consoleInput)(18) + split(consoleInput)(19) + split(consoleInput)(20) + "\n" +
-      "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "quintillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "quadrillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "trillion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "billion" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "million" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17) + "thousand" +
-                              ", " + split(consoleInput)(18) + split(consoleInput)(19) + split(consoleInput)(20);
-    case 8 if x > 21 && x < 24 =>
-      "Short Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "sextillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "quintillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "quadrillion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "trillion" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "billion" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17) + "million" +
-                              ", " + split(consoleInput)(18) + split(consoleInput)(19) + split(consoleInput)(20) + "thousand" +
-                                  ", " + split(consoleInput)(21) + split(consoleInput)(22) + split(consoleInput)(23) + "\n" +
-      "Long Scale: " + split(consoleInput).head + split(consoleInput)(1) + split(consoleInput)(2) + "quintillion" +
-          ", " + split(consoleInput)(3) + split(consoleInput)(4) + split(consoleInput)(5) + "quintillion" +
-              ", " + split(consoleInput)(6) + split(consoleInput)(7) + split(consoleInput)(8) + "quadrillion" +
-                  ", " + split(consoleInput)(9) + split(consoleInput)(10) + split(consoleInput)(11) + "trillion" +
-                      ", " + split(consoleInput)(12) + split(consoleInput)(13) + split(consoleInput)(14) + "billion" +
-                          ", " + split(consoleInput)(15) + split(consoleInput)(16) + split(consoleInput)(17) + "million" +
-                              ", " + split(consoleInput)(18) + split(consoleInput)(19) + split(consoleInput)(20) + "thousand" +
-                                  ", " + split(consoleInput)(21) + split(consoleInput)(22) + split(consoleInput)(23);
-    case _ => "Invalid input"
+      case _ if x > 0 && x <= 3 =>
+        "Short Scale: " + grouped.head + "\n" + "Long Scale: " + grouped.head;
+      case _ if x > 3 && x <= 6 =>
+        "Short Scale: " + grouped.head + " thousand and " + grouped(1) + "\n" +
+        "Long Scale: " + grouped.head + " thousand and " + grouped(1);
+      case _ if x > 6 && x <= 9 =>
+        "Short Scale: " + grouped.head + " million, " + grouped(1) + " thousand and " + grouped(2) + "\n" +
+        "Long Scale: " + grouped.head + " million, " + grouped(1) + " thousand and " + grouped(2);
+      case _ if x > 9 && x <= 12 =>
+        "Short Scale: " + grouped.head + " billion, " + grouped(1) + " million, " + grouped(2) + " thousand and " +
+          grouped(3) + "\n" +
+        "Long Scale: " + grouped.head + " milliard, " + grouped(1) + " million, " + grouped(2) + " thousand and " +
+          grouped(3);
+      case _ if x > 12 && x <= 15 =>
+        "Short Scale: " + grouped.head + " trillion, " + grouped(1) + " billion, " + grouped(2) + " million, " +
+          grouped(3) + " thousand and " + grouped(4) + "\n" +
+        "Long Scale: " + grouped.head + " billion, " + grouped(1) + " milliard, " + grouped(2) + " million, " +
+          grouped(3) + " thousand and " + grouped(4);
+      case _ if x > 15 && x <= 18 =>
+        "Short Scale: " + grouped.head + " quadrillion, " + grouped(1) + " trillion, " + grouped(2) + " billion, " +
+          grouped(3) + " million, " + grouped(4) + " thousand and " + grouped(5) + "\n" +
+        "Long Scale: " + grouped.head + " billiard, " + grouped(1) + " billion, " + grouped(2) + " milliard, " +
+          grouped(3) + " million, " + grouped(4) + "thousand and " + grouped(5);
+      case _ if x > 18 && x <= 21 =>
+        "Short Scale: " + grouped.head + " quintillion, " + grouped(1) + " quadrillion, " + grouped(2) + " trillion, " +
+          grouped(3) + " billion, " + grouped(4) + " million " + grouped(5) + " thousand and " + grouped(6) + "\n" +
+        "Long Scale: " + grouped.head + " trillion, " + grouped(1) + " billiard, " + grouped(2) + " billion, " +
+          grouped(3) + " milliard, " + grouped(4) + " million " + grouped(5) + " thousand and " + grouped(6);
+      case _ if x > 21 && x <= 24 =>
+        "Short Scale: " + grouped.head + " sextillion, " + grouped(1) + " quintillion, " + grouped(2) + " quadrillion, " +
+          grouped(3) + " trillion, " + grouped(4) + " billion " + grouped(5) + " million " + grouped(6) +
+          " thousand and " + grouped(7) + "\n" +
+        "Long Scale: " + grouped.head + " trilliard, " + grouped(1) + " trillion, " + grouped(2) + " billiard, " +
+          grouped(3) + " billion, " + grouped(4) + " milliard " + grouped(5) + " million " + grouped(6) +
+          " thousand and " + grouped(7);
+      case _ => "Invalid Input";
   }
 
   def main(args: Array[String]): Unit = {
-
-    println(digitLength(1000000000,1))
-
+    println(checkLength(length))
   }
 
 
