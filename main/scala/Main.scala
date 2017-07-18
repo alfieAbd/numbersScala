@@ -1,7 +1,7 @@
 /**
   * Created by Administrator on 18/07/2017.
   */
-object Main extends BaseTest {
+object Main {
 
   val consoleInput: String = scala.io.StdIn.readLine()
   val length: Int = consoleInput.length()
